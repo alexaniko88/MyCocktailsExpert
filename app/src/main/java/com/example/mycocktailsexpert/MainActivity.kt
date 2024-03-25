@@ -37,19 +37,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.mycocktailsexpert.data.RetrofitService
-import com.example.mycocktailsexpert.data.RetrofitServiceFactory
 import com.example.mycocktailsexpert.data.model.RemoteDrinksResult
+import com.example.mycocktailsexpert.features.drinks.DrinksViewModel
 import com.example.mycocktailsexpert.ui.theme.MyCocktailsExpertTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val service = RetrofitServiceFactory.retrofit
-
         setContent {
             MyCocktailsExpertTheme {
                 // A surface container using the 'background' color from the theme
@@ -57,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    DrinksList(service = service)
+                    DrinksList()
                 }
             }
         }
@@ -65,23 +62,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun DrinksList(service: RetrofitService) {
-
-    var drinksResult by remember { mutableStateOf(RemoteDrinksResult(drinks = listOf())) }
-    var searchText by remember { mutableStateOf(TextFieldValue()) }
-
-    LaunchedEffect(searchText) {
-        val result = try {
-            service.searchCocktails(filter = searchText.text)
-        } catch (e: Exception) {
-            RemoteDrinksResult(drinks = listOf())
-        }
-        drinksResult = if (result.drinks == null) {
-            RemoteDrinksResult(drinks = listOf())
-        } else {
-            result
-        }
-    }
+fun DrinksList() {
+    val viewModel: DrinksViewModel = viewModel()
 
     Column(
         modifier = Modifier
@@ -90,8 +72,10 @@ fun DrinksList(service: RetrofitService) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         OutlinedTextField(
-            value = searchText,
-            onValueChange = { searchText = it },
+            value = viewModel.searchText.value,
+            onValueChange = {
+                viewModel.searchCocktails(it)
+            },
             placeholder = { Text("Search") },
             singleLine = true,
             leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
@@ -99,10 +83,10 @@ fun DrinksList(service: RetrofitService) {
         )
 
         Spacer(modifier = Modifier.height(20.dp))
-        Text("TOTAL DRINKS: ${drinksResult.drinks?.size ?: 0}")
+        Text("TOTAL DRINKS: ${viewModel.drinksResult.value?.drinks?.size ?: 0}")
         Spacer(modifier = Modifier.height(20.dp))
         LazyColumn {
-            drinksResult.drinks?.let {
+            viewModel.drinksResult.value?.drinks?.let {
                 items(it) { item ->
                     ListItem(
                         modifier = Modifier

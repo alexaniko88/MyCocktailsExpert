@@ -21,7 +21,7 @@ object RetrofitServiceFactory {
 
     val retrofit: RetrofitService by lazy {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BASIC // Set the desired log level
+            level = HttpLoggingInterceptor.Level.BODY // Set the desired log level
         }
 
         val client = OkHttpClient.Builder()
