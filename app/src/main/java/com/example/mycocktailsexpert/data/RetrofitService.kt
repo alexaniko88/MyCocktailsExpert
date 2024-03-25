@@ -4,12 +4,15 @@ import com.example.mycocktailsexpert.data.model.RemoteDrinksResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface RetrofitService {
     //https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a
-    @GET("search.php?f=a")
-    suspend fun getAllCocktails() : RemoteDrinksResult
+    @GET("search.php?")
+    suspend fun searchCocktails(
+        @Query("f") filter: String,
+    ) : RemoteDrinksResult
 }
 
 object RetrofitServiceFactory {
