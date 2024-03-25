@@ -1,6 +1,8 @@
 package com.example.mycocktailsexpert.data
 
 import com.example.mycocktailsexpert.data.model.RemoteDrinksResult
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -8,17 +10,27 @@ import retrofit2.http.Query
 
 
 interface RetrofitService {
-    //https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a
     @GET("search.php?")
     suspend fun searchCocktails(
-        @Query("f") filter: String,
-    ) : RemoteDrinksResult
+        @Query("s") filter: String,
+    ): RemoteDrinksResult
 }
 
 object RetrofitServiceFactory {
-    fun makeRetrofitService(): RetrofitService {
-        return Retrofit.Builder()
-            .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
+    private const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"
+
+    val retrofit: RetrofitService by lazy {
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BASIC // Set the desired log level
+        }
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor) // Add logging interceptor
+            .build()
+
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(RetrofitService::class.java)
