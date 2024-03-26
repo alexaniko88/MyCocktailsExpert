@@ -16,14 +16,14 @@ class DrinksViewModel : ViewModel() {
 
     private val service = RetrofitServiceFactory.retrofit
 
-    var searchText: MutableState<TextFieldValue> = mutableStateOf(TextFieldValue())
+    var searchText: MutableState<String> = mutableStateOf("")
     val drinksResult: MutableState<RemoteDrinksResult> = mutableStateOf(RemoteDrinksResult(drinks = listOf()))
 
-    fun searchCocktails(value: TextFieldValue) {
+    fun searchCocktails(value: String) {
         searchText.value = value
         viewModelScope.launch {
             val result = try {
-                service.searchCocktails(searchText.value.text)
+                service.searchCocktails(searchText.value)
             } catch (e: Exception) {
                 RemoteDrinksResult(drinks = listOf())
             }
