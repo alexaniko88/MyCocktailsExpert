@@ -14,6 +14,11 @@ interface RetrofitService {
     suspend fun searchCocktails(
         @Query("s") filter: String,
     ): RemoteDrinksResult
+
+    @GET("lookup.php?")
+    suspend fun getCocktailById(
+        @Query("i") filter: String,
+    ): RemoteDrinksResult
 }
 
 object RetrofitServiceFactory {

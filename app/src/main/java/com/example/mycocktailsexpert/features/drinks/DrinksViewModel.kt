@@ -1,11 +1,9 @@
 package com.example.mycocktailsexpert.features.drinks
 
 
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mycocktailsexpert.data.RetrofitServiceFactory
@@ -16,18 +14,33 @@ class DrinksViewModel : ViewModel() {
 
     private val service = RetrofitServiceFactory.retrofit
 
-    var searchText: MutableState<String> = mutableStateOf("")
-    val drinksResult: MutableState<RemoteDrinksResult> = mutableStateOf(RemoteDrinksResult(drinks = listOf()))
+    var searchText by mutableStateOf("")
+    var drinksResult by mutableStateOf(RemoteDrinksResult(drinks = listOf()))
 
     fun searchCocktails(value: String) {
-        searchText.value = value
+        searchText = value
         viewModelScope.launch {
             val result = try {
-                service.searchCocktails(searchText.value)
+                service.searchCocktails(searchText)
             } catch (e: Exception) {
                 RemoteDrinksResult(drinks = listOf())
             }
-            drinksResult.value = if (result.drinks == null) {
+            drinksResult = if (result.drinks == null) {
+                RemoteDrinksResult(drinks = listOf())
+            } else {
+                result
+            }
+        }
+    }
+
+    fun getCocktailById(id: String) {
+        viewModelScope.launch {
+            val result = try {
+                service.getCocktailById(id)
+            } catch (e: Exception) {
+                RemoteDrinksResult(drinks = listOf())
+            }
+            drinksResult = if (result.drinks == null) {
                 RemoteDrinksResult(drinks = listOf())
             } else {
                 result
