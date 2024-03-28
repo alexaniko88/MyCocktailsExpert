@@ -6,13 +6,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mycocktailsexpert.data.RetrofitService
 import com.example.mycocktailsexpert.data.RetrofitServiceFactory
 import com.example.mycocktailsexpert.data.model.RemoteDrinksResult
 import kotlinx.coroutines.launch
 
-class DrinksViewModel : ViewModel() {
-
-    private val service = RetrofitServiceFactory.retrofit
+class DrinksViewModel(private val service: RetrofitService) : ViewModel() {
 
     var searchText by mutableStateOf("")
     var drinksResult by mutableStateOf(RemoteDrinksResult(drinks = listOf()))

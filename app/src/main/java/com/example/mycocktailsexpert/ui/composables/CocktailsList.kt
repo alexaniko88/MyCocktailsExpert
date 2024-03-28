@@ -27,17 +27,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.mycocktailsexpert.LocalNavController
 import com.example.mycocktailsexpert.R
 import com.example.mycocktailsexpert.features.drinks.DrinksViewModel
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun CocktailsList(modifier: Modifier = Modifier, navController: NavHostController) {
-    val viewModel: DrinksViewModel = viewModel()
+fun CocktailsList(
+    modifier: Modifier = Modifier,
+    viewModel: DrinksViewModel = koinViewModel(),
+) {
+    val navController = LocalNavController.current
     Column(
         modifier = modifier
             .fillMaxSize()

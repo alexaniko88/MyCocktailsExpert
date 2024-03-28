@@ -19,7 +19,7 @@ import com.example.mycocktailsexpert.ui.theme.MyCocktailsExpertTheme
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun MainScreen(navController: NavHostController) {
+fun MainScreen() {
     MyCocktailsExpertTheme {
         // A surface container using the 'background' color from the theme
         Surface(
@@ -33,7 +33,7 @@ fun MainScreen(navController: NavHostController) {
                     })
                 }
             ) { padding ->
-                CocktailsList(modifier = Modifier.padding(padding), navController)
+                CocktailsList(modifier = Modifier.padding(padding))
             }
         }
     }

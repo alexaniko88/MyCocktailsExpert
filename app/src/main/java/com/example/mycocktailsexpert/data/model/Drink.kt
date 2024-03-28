@@ -26,23 +26,23 @@ data class Drink(
     @SerializedName("strImageSource")
     val imageSource: String,
     @SerializedName("strIngredient1")
-    val ingredient1: String,
+    val ingredient1: String?,
     @SerializedName("strIngredient2")
-    val ingredient2: String,
+    val ingredient2: String?,
     @SerializedName("strIngredient3")
-    val ingredient3: String,
+    val ingredient3: String?,
     @SerializedName("strInstructions")
-    val instructions: String,
+    val instructions: String?,
     @SerializedName("strInstructionsES")
-    val instructionsES: String,
+    val instructionsES: String?,
     @SerializedName("strMeasure1")
-    val measure1: String,
+    val measure1: String?,
     @SerializedName("strMeasure2")
-    val measure2: String,
+    val measure2: String?,
     @SerializedName("strMeasure3")
-    val measure3: String,
+    val measure3: String?,
     @SerializedName("strTags")
-    val tags: String,
+    val tags: String?,
     @SerializedName("strVideo")
-    val video: String
+    val video: String?
 )
