@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.domain.entities
+package com.example.mycocktailsexpert.domain.drinks.entities
 
 data class Drink(
     val idDrink: String,

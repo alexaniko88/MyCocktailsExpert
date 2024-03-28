@@ -3,9 +3,9 @@ package com.example.mycocktailsexpert.data.repositories
 import com.example.mycocktailsexpert.data.datasources.DrinksDatasource
 import com.example.mycocktailsexpert.data.toDrink
 import com.example.mycocktailsexpert.data.toMyDrinks
-import com.example.mycocktailsexpert.domain.entities.Drink
-import com.example.mycocktailsexpert.domain.entities.MyDrinks
-import com.example.mycocktailsexpert.domain.repositories.DrinksRepository
+import com.example.mycocktailsexpert.domain.drinks.entities.Drink
+import com.example.mycocktailsexpert.domain.drinks.entities.MyDrinks
+import com.example.mycocktailsexpert.domain.drinks.repositories.DrinksRepository
 
 
 class DrinksRepositoryImpl(private val datasource: DrinksDatasource) : DrinksRepository {

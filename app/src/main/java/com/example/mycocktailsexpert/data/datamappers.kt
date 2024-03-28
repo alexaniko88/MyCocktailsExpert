@@ -2,8 +2,8 @@ package com.example.mycocktailsexpert.data
 
 import com.example.mycocktailsexpert.data.dtos.DrinkDTO
 import com.example.mycocktailsexpert.data.dtos.MyDrinksDTO
-import com.example.mycocktailsexpert.domain.entities.Drink
-import com.example.mycocktailsexpert.domain.entities.MyDrinks
+import com.example.mycocktailsexpert.domain.drinks.entities.Drink
+import com.example.mycocktailsexpert.domain.drinks.entities.MyDrinks
 
 
 fun MyDrinksDTO.toMyDrinks() = MyDrinks(
