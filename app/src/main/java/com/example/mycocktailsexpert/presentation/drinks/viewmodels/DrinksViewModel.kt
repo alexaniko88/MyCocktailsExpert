@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.features.drinks.presentation.viewmodels
+package com.example.mycocktailsexpert.presentation.drinks.viewmodels
 
 
 import androidx.compose.runtime.getValue
@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mycocktailsexpert.features.drinks.domain.entities.MyDrinks
-import com.example.mycocktailsexpert.features.drinks.domain.repositories.DrinksRepository
+import com.example.mycocktailsexpert.domain.entities.MyDrinks
+import com.example.mycocktailsexpert.domain.repositories.DrinksRepository
 import kotlinx.coroutines.launch
 
 class DrinksViewModel(private val repository: DrinksRepository) : ViewModel() {

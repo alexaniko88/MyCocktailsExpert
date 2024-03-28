@@ -12,8 +12,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.mycocktailsexpert.features.drinkDetails.presentation.screens.CocktailDetailsScreen
-import com.example.mycocktailsexpert.features.drinks.presentation.screens.MainScreen
+import com.example.mycocktailsexpert.presentation.drinkDetails.screens.CocktailDetailsScreen
+import com.example.mycocktailsexpert.presentation.drinks.screens.MainScreen
 
 val LocalNavController = compositionLocalOf<NavController> { error("No NavController provided") }
 

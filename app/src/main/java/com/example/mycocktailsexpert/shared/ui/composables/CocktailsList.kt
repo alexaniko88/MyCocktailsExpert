@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.mycocktailsexpert.R
-import com.example.mycocktailsexpert.features.drinks.presentation.viewmodels.DrinksViewModel
+import com.example.mycocktailsexpert.presentation.drinks.viewmodels.DrinksViewModel
 import com.example.mycocktailsexpert.shared.navigation.LocalNavController
 
 
@@ -57,43 +57,41 @@ fun CocktailsList(
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Text(stringResource(R.string.total_drinks, viewModel.drinksResult.drinks?.size ?: 0))
+        Text(stringResource(R.string.total_drinks, viewModel.drinksResult.drinks.size))
         Spacer(modifier = Modifier.height(20.dp))
         LazyColumn {
-            viewModel.drinksResult.drinks?.let {
-                items(it) { item ->
-                    ListItem(
-                        modifier = Modifier
-                            .clickable {
-                                navController.navigate("detail/${item.idDrink}")
-                            }
-                            .fillMaxHeight(),
-                        headlineContent = {
-                            Text(item.drink)
-                        },
-                        overlineContent = {
-                            Text(item.category)
-                        },
-                        supportingContent = {
-                            Text(item.glass)
-                        },
-                        leadingContent = {
-                            AsyncImage(
-                                modifier = Modifier
-                                    .clip(CircleShape)
-                                    .width(60.dp),
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data(item.drinkThumb)
-                                    .crossfade(true)
-                                    .placeholder(R.drawable.ic_placeholder)
-                                    .build(),
-                                contentDescription = null
-                            )
-                        },
-
+            items(viewModel.drinksResult.drinks) { item ->
+                ListItem(
+                    modifier = Modifier
+                        .clickable {
+                            navController.navigate("detail/${item.idDrink}")
+                        }
+                        .fillMaxHeight(),
+                    headlineContent = {
+                        Text(item.drink)
+                    },
+                    overlineContent = {
+                        Text(item.category)
+                    },
+                    supportingContent = {
+                        Text(item.glass)
+                    },
+                    leadingContent = {
+                        AsyncImage(
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .width(60.dp),
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(item.drinkThumb)
+                                .crossfade(true)
+                                .placeholder(R.drawable.ic_placeholder)
+                                .build(),
+                            contentDescription = null
                         )
-                    Divider(color = Color.Gray)
-                }
+                    },
+
+                    )
+                Divider(color = Color.Gray)
             }
         }
     }

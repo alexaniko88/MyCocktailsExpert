@@ -1,30 +1,31 @@
-package com.example.mycocktailsexpert.shared.domain.entities
+package com.example.mycocktailsexpert.data.dtos
 
 import com.google.gson.annotations.SerializedName
 
-data class Drink(
-    val dateModified: String,
+
+data class DrinkDTO(
     val idDrink: String,
+    val dateModified: String?,
     @SerializedName("strAlcoholic")
-    val alcoholic: String,
+    val alcoholic: String?,
     @SerializedName("strCategory")
-    val category: String,
+    val category: String?,
     @SerializedName("strCreativeCommonsConfirmed")
-    val creativeCommonsConfirmed: String,
+    val creativeCommonsConfirmed: String?,
     @SerializedName("strDrink")
-    val drink: String,
+    val drink: String?,
     @SerializedName("strDrinkAlternate")
-    val drinkAlternate: Any,
+    val drinkAlternate: Any?,
     @SerializedName("strDrinkThumb")
-    val drinkThumb: String,
+    val drinkThumb: String?,
     @SerializedName("strGlass")
-    val glass: String,
+    val glass: String?,
     @SerializedName("strIBA")
-    val iba: String,
+    val iba: String?,
     @SerializedName("strImageAttribution")
-    val imageAttribution: String,
+    val imageAttribution: String?,
     @SerializedName("strImageSource")
-    val imageSource: String,
+    val imageSource: String?,
     @SerializedName("strIngredient1")
     val ingredient1: String?,
     @SerializedName("strIngredient2")

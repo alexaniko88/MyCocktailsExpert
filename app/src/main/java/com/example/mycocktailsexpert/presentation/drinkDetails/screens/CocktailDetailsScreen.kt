@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.features.drinkDetails.presentation.screens
+package com.example.mycocktailsexpert.presentation.drinkDetails.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.mycocktailsexpert.R
-import com.example.mycocktailsexpert.features.drinkDetails.presentation.viewmodels.DrinkDetailsViewModel
+import com.example.mycocktailsexpert.presentation.drinkDetails.viewmodels.DrinkDetailsViewModel
 import com.example.mycocktailsexpert.shared.navigation.LocalNavController
 import com.example.mycocktailsexpert.shared.ui.theme.MyCocktailsExpertTheme
 import org.koin.androidx.compose.koinViewModel
