@@ -67,7 +67,11 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+
+    // Testing
     testImplementation(libs.junit)
+    testImplementation(libs.mockito)
+    testImplementation(libs.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
