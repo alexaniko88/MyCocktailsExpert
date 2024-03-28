@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.data.model
+package com.example.mycocktailsexpert.shared.domain.entities
 
 import com.google.gson.annotations.SerializedName
 

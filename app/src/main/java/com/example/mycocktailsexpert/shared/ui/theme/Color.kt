@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.ui.theme
+package com.example.mycocktailsexpert.shared.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

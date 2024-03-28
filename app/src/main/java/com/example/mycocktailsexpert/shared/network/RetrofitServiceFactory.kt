@@ -1,25 +1,10 @@
-package com.example.mycocktailsexpert.data
+package com.example.mycocktailsexpert.shared.network
 
-import com.example.mycocktailsexpert.data.model.RemoteDrinksResult
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
 
-
-interface RetrofitService {
-    @GET("search.php?")
-    suspend fun searchCocktails(
-        @Query("s") filter: String,
-    ): RemoteDrinksResult
-
-    @GET("lookup.php?")
-    suspend fun getCocktailById(
-        @Query("i") filter: String,
-    ): RemoteDrinksResult
-}
 
 object RetrofitServiceFactory {
     private const val BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/"

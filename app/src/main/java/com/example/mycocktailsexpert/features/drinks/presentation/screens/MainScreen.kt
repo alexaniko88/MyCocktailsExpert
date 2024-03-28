@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.ui.screens.main
+package com.example.mycocktailsexpert.features.drinks.presentation.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,15 +11,16 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavHostController
 import com.example.mycocktailsexpert.R
-import com.example.mycocktailsexpert.ui.composables.CocktailsList
-import com.example.mycocktailsexpert.ui.theme.MyCocktailsExpertTheme
+import com.example.mycocktailsexpert.features.drinks.presentation.viewmodels.DrinksViewModel
+import com.example.mycocktailsexpert.shared.ui.composables.CocktailsList
+import com.example.mycocktailsexpert.shared.ui.theme.MyCocktailsExpertTheme
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun MainScreen() {
+fun MainScreen(viewModel: DrinksViewModel = koinViewModel()) {
     MyCocktailsExpertTheme {
         // A surface container using the 'background' color from the theme
         Surface(
@@ -33,7 +34,10 @@ fun MainScreen() {
                     })
                 }
             ) { padding ->
-                CocktailsList(modifier = Modifier.padding(padding))
+                CocktailsList(
+                    modifier = Modifier.padding(padding),
+                    viewModel = viewModel,
+                )
             }
         }
     }

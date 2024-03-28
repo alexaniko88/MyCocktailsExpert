@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.ui.composables
+package com.example.mycocktailsexpert.shared.ui.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -29,16 +29,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.mycocktailsexpert.LocalNavController
 import com.example.mycocktailsexpert.R
-import com.example.mycocktailsexpert.features.drinks.DrinksViewModel
-import org.koin.androidx.compose.koinViewModel
+import com.example.mycocktailsexpert.features.drinks.presentation.viewmodels.DrinksViewModel
+import com.example.mycocktailsexpert.shared.navigation.LocalNavController
 
 
 @Composable
 fun CocktailsList(
     modifier: Modifier = Modifier,
-    viewModel: DrinksViewModel = koinViewModel(),
+    viewModel: DrinksViewModel,
 ) {
     val navController = LocalNavController.current
     Column(

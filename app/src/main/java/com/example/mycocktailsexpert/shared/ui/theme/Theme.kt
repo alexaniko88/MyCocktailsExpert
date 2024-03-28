@@ -1,4 +1,4 @@
-package com.example.mycocktailsexpert.ui.theme
+package com.example.mycocktailsexpert.shared.ui.theme
 
 import android.app.Activity
 import android.os.Build
